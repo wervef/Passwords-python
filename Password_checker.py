@@ -1,6 +1,5 @@
 import random
 import string
-from cryptography.fernet import Fernet
 
 
 def passwords_checker():
@@ -11,16 +10,25 @@ def passwords_checker():
         password_list = text.split()
         #Reads the passwords file and makes a list including every password in it
     for single_password in password_list:
-        if password_checker(single_password) == "Password fails" or password_checker(single_password) == "Password is too short":
+        password_status = password_checker(single_password)
+        if password_status == "Password is too short":
             #If the password isn't secure enough it will be improved and added to the new list of passwords
             while len(single_password) < 12:
                 extra_characters = str(random.randint(1, 9)) + random.choice(string.ascii_lowercase) + random.choice(string.ascii_uppercase) + random.choice(string.punctuation)
                 single_password = single_password + extra_characters
             new_passwords = new_passwords + [single_password]
+        elif password_status == "Password fails":
+            #If the password isn't secure enough it will be improved and added to the new list of passwords
+            extra_characters = str(random.randint(1, 9)) + random.choice(string.ascii_lowercase) + random.choice(string.ascii_uppercase) + random.choice(string.punctuation)
+            single_password = single_password + extra_characters
+            new_passwords = new_passwords + [single_password]
         else:
             #If the password is already secure enough then it will be added to the new list of passwords without any change
             new_passwords = new_passwords + [single_password]
-    print(new_passwords)
+    with open('passwords_ok.txt', 'w') as file:
+        # Iterates through the list and writes each element to a file named password_ok.txt
+        for item in new_passwords:
+            file.write(item + '\n')
     #The new list of passwords will be shown
 
 

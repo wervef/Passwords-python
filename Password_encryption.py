@@ -34,11 +34,24 @@ def encrypt_passwords():
         decrypted_item = cipher.decrypt(item).decode()
         decrypted_data.append(decrypted_item)
 
-    print("Original Data:", data_to_encrypt)
-    print("Encrypted Data:", encrypted_data)
-    print("Decrypted Data:", decrypted_data)
-    print("Encryption Key:", key)
+    #print("Original Data:", data_to_encrypt)
+    #print("Encrypted Data:", encrypted_data)
+    #print("Decrypted Data:", decrypted_data)
+    #print("Encryption Key:", key)
+
+    with open('list_of_50_encrypted_passwords.txt', 'w') as file:
+        # Iterates through the list and writes each element to a file named list_of_50_encrypted_passwords.txt
+        for item in encrypted_data:
+            file.write(item + '\n') 
+
+def password_to_txt():
+    list_of_passwords = password_list_generator()
+    with open('list_of_50_passwords.txt', 'w') as file:
+        # Iterates through the list and writes each element to a file named list_of_50_passwords.txt
+        for item in list_of_passwords:
+            file.write(item + '\n')    
 
 
 
 encrypt_passwords()
+password_to_txt()
