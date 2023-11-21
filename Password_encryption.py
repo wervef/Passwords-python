@@ -42,14 +42,14 @@ def encrypt_passwords():
     with open('list_of_50_encrypted_passwords.txt', 'w') as file:
         # Iterates through the list and writes each element to a file named list_of_50_encrypted_passwords.txt
         for item in encrypted_data:
-            file.write(item + '\n') 
+            file.write(str(item) + '\n') 
 
 def password_to_txt():
     list_of_passwords = password_list_generator()
     with open('list_of_50_passwords.txt', 'w') as file:
         # Iterates through the list and writes each element to a file named list_of_50_passwords.txt
         for item in list_of_passwords:
-            file.write(item + '\n')    
+            file.write(str(item) + '\n')    
 
 
 
